@@ -7,12 +7,11 @@ public class LemonSymbol implements Symbol{
         return "Lemon";
     }
 
-    private static final int WIDTH = 60;
-    private static final int HEIGHT = 60;
-
+    private static final int WIDTH = 55;
+    private static final int HEIGHT = 55;
     @Override
     public ImageIcon getSymbolImage() {
-        ImageIcon originalIcon = new ImageIcon("src/img/lemon.png");
+        ImageIcon originalIcon = new ImageIcon("src/src/img/lemon.png");
         return resizeIcon(originalIcon, WIDTH, HEIGHT);
     }
 

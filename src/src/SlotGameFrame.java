@@ -19,7 +19,7 @@ public class SlotGameFrame extends JFrame {
 
     Font font1;
     {
-        String fName = "ProtestRevolution-Regular.ttf";
+        String fName = "/fonts/ProtestRevolution-Regular.ttf";
         try (InputStream is = SlotGameFrame.class.getResourceAsStream(fName)) {
             if (is == null) {
                 throw new IOException("Font file not found: " + fName);
@@ -32,7 +32,7 @@ public class SlotGameFrame extends JFrame {
 
     Font font1b;
     {
-        String fName = "ProtestRevolution-Regular.ttf";
+        String fName = "/fonts/ProtestRevolution-Regular.ttf";
         try (InputStream is = SlotGameFrame.class.getResourceAsStream(fName)) {
             if (is == null) {
                 throw new IOException("Font file not found: " + fName);
@@ -45,7 +45,7 @@ public class SlotGameFrame extends JFrame {
 
     Font font2;
     {
-        String fName = "ProtestRevolution-Regular.ttf";
+        String fName = "/fonts/ProtestRevolution-Regular.ttf";
         try (InputStream is = SlotGameFrame.class.getResourceAsStream(fName)) {
             if (is == null) {
                 throw new IOException("Font file not found: " + fName);
@@ -58,7 +58,7 @@ public class SlotGameFrame extends JFrame {
 
     Font font3;
     {
-        String fName = "ProtestRevolution-Regular.ttf";
+        String fName = "/fonts/ProtestRevolution-Regular.ttf";
         try (InputStream is = SlotGameFrame.class.getResourceAsStream(fName)) {
             if (is == null) {
                 throw new IOException("Font file not found: " + fName);
@@ -71,7 +71,7 @@ public class SlotGameFrame extends JFrame {
 
     Font font3b;
     {
-        String fName = "ProtestRevolution-Regular.ttf";
+        String fName = "/fonts/ProtestRevolution-Regular.ttf";
         try (InputStream is = SlotGameFrame.class.getResourceAsStream(fName)) {
             if (is == null) {
                 throw new IOException("Font file not found: " + fName);
@@ -84,7 +84,7 @@ public class SlotGameFrame extends JFrame {
 
     Font font4;
     {
-        String fName = "ProtestRevolution-Regular.ttf";
+        String fName = "/fonts/ProtestRevolution-Regular.ttf";
         try (InputStream is = SlotGameFrame.class.getResourceAsStream(fName)) {
             if (is == null) {
                 throw new IOException("Font file not found: " + fName);
@@ -107,7 +107,7 @@ public class SlotGameFrame extends JFrame {
         Container con = getContentPane();
 
         symbolPanel = new SymbolPanel();
-        symbolPanel.setBackground(new Color(155, 28, 58));
+        symbolPanel.setBackground(new Color(155, 28, 72));
         symbolPanel.setBounds(290, 120, 600, 400);
         symbolPanel.setBorder(new LineBorder(Color.black, 5));
         con.add(symbolPanel);

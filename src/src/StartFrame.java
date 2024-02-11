@@ -15,7 +15,7 @@ public class StartFrame extends JFrame {
     Container con;
 
     {
-        String fName = "ProtestRevolution-Regular.ttf";
+        String fName = "/fonts/ProtestRevolution-Regular.ttf";
         try (InputStream is = SlotGameFrame.class.getResourceAsStream(fName)) {
             if (is == null) {
                 throw new IOException("Font file not found: " + fName);
@@ -27,7 +27,7 @@ public class StartFrame extends JFrame {
     }
 
     {
-        String fName = "ProtestRevolution-Regular.ttf";
+        String fName = "/fonts/ProtestRevolution-Regular.ttf";
         try (InputStream is = SlotGameFrame.class.getResourceAsStream(fName)) {
             if (is == null) {
                 throw new IOException("Font file not found: " + fName);
@@ -39,7 +39,7 @@ public class StartFrame extends JFrame {
     }
 
     {
-        String fName = "ProtestRevolution-Regular.ttf";
+        String fName = "/fonts/ProtestRevolution-Regular.ttf";
         try (InputStream is = SlotGameFrame.class.getResourceAsStream(fName)) {
             if (is == null) {
                 throw new IOException("Font file not found: " + fName);
@@ -150,10 +150,10 @@ public class StartFrame extends JFrame {
                 return;
             }
 
-            try (InputStream in = getClass().getResourceAsStream("/log/player.txt")) {
+            try (InputStream in = getClass().getResourceAsStream("/log/playerInput.txt")) {
                 assert in != null;
                 try (BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-                     PrintWriter writer = new PrintWriter(new FileWriter("/log/player.txt", true))) {
+                     PrintWriter writer = new PrintWriter(new FileWriter("/log/playerInput.txt", true))) {
 
                     StringBuilder content = new StringBuilder();
                     String line;

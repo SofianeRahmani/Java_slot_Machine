@@ -3,25 +3,31 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class BackgroundMusic {
-    private static final BackgroundMusic instance = new BackgroundMusic();
+    private static BackgroundMusic instance;
     private Clip clip;
-    private int referenceCount = 0;
-    private float volume = 1.0f;
+    private int referenceCount;
+    private float volume;
 
-    private BackgroundMusic() {}
+    private BackgroundMusic() {
+        referenceCount = 0;
+        volume = 1.0f;
+    }
 
     public static BackgroundMusic getInstance() {
+        if (instance == null) {
+            instance = new BackgroundMusic();
+        }
         return instance;
     }
 
-    public synchronized void addReference() {
+    public void addReference() {
         referenceCount++;
         if (referenceCount == 1) {
-            play("/music/background.wav");
+            play("/music/wind.wav");
         }
     }
 
-    public synchronized void removeReference() {
+    public void removeReference() {
         referenceCount--;
         if (referenceCount == 0) {
             stop();
@@ -34,42 +40,42 @@ public class BackgroundMusic {
 
     public void setVolume(float volume) {
         this.volume = volume;
-        adjustVolume();
+        if (clip != null) {
+            adjustVolume();
+        }
     }
 
     private void play(String musicFilePath) {
         try {
-            if (clip == null || !clip.isOpen()) {
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
-                        Objects.requireNonNull(getClass().getResource(musicFilePath)));
-                clip = AudioSystem.getClip();
-                clip.open(audioInputStream);
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
-            }
-
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResource(musicFilePath)));
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
             adjustVolume();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (LineUnavailableException e) {
+            System.err.println("The audio format is not supported by the system. Trying a fallback format or handling the error.");
+            // Consider a fallback strategy here
+        } catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
         }
     }
 
+
     private void adjustVolume() {
-        if (clip != null && clip.isRunning()) {
+        if (clip != null) {
             try {
                 FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
                 float range = gainControl.getMaximum() - gainControl.getMinimum();
                 float gain = (range * volume) + gainControl.getMinimum();
                 gainControl.setValue(gain);
             } catch (IllegalArgumentException e) {
-                // Consider logging this exception
                 e.printStackTrace();
             }
         }
     }
 
     private void stop() {
-        if (clip != null) {
+        if (clip != null && clip.isRunning()) {
             clip.stop();
             clip.close();
         }

@@ -6,13 +6,11 @@ public class PlumSymbol implements Symbol{
     public String getSymbol() {
         return "Plum";
     }
-
-    private static final int WIDTH = 60;
-    private static final int HEIGHT = 60;
-
+    private static final int WIDTH = 55;
+    private static final int HEIGHT = 55;
     @Override
     public ImageIcon getSymbolImage() {
-        ImageIcon originalIcon = new ImageIcon("src/img/plum.png");
+        ImageIcon originalIcon = new ImageIcon("src/src/img/plum.png");
         return resizeIcon(originalIcon, WIDTH, HEIGHT);
     }
 

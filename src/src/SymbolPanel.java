@@ -13,7 +13,7 @@ public class SymbolPanel extends JPanel {
     private final Symbol[][] symbols;
     private Symbol[][] shuffledSymbols;
     private final Timer shuffleTimer;
-    private final int shuffleDuration = 600;
+    private final int shuffleDuration = 800;
     private final int symbolSize = 100;
     private final int rows = 3;
     private final int columns = 3;
@@ -39,10 +39,10 @@ public class SymbolPanel extends JPanel {
     private void initializeSymbols() {
         List<Symbol> symbolTypes = new ArrayList<>();
         symbolTypes.add(new BellSymbol());
-        symbolTypes.add(new CherrySymbol());
         symbolTypes.add(new LemonSymbol());
-        symbolTypes.add(new OrangeSymbol());
         symbolTypes.add(new PlumSymbol());
+        symbolTypes.add(new OrangeSymbol());
+        symbolTypes.add(new CherrySymbol());
 
         Collections.shuffle(symbolTypes);
 
@@ -57,21 +57,16 @@ public class SymbolPanel extends JPanel {
     }
 
     private void shuffleSymbols() {
-        initializeSymbols();
-        shuffledSymbols = symbols.clone();
-
         List<Symbol> flatSymbols = new ArrayList<>();
-        for (int i = 0; i < rows; i++) {
-            flatSymbols.addAll(Arrays.asList(shuffledSymbols[i]).subList(0, columns));
+        for (Symbol[] row : symbols) {
+            flatSymbols.addAll(Arrays.asList(row));
         }
 
         Collections.shuffle(flatSymbols);
 
-        int count = 0;
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0, k = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                shuffledSymbols[i][j] = flatSymbols.get(count);
-                count++;
+                shuffledSymbols[i][j] = flatSymbols.get(k++);
             }
         }
     }
@@ -127,23 +122,42 @@ public class SymbolPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int x = 30;
-        int y = 30;
+        // Clear the background
+        g.setColor(getBackground());
+        g.fillRect(0, 0, getWidth(), getHeight());
 
+        // Calculate the total gap size
+        int totalGapWidth = getWidth() - (symbolSize * columns);
+        int totalGapHeight = getHeight() - (symbolSize * rows);
+
+        // Calculate individual gap sizes
+        int xGap = totalGapWidth / (columns + 1);
+        int yGap = totalGapHeight / (rows + 1);
+
+        // Calculate the starting positions
+        int x = xGap;
+        int y = yGap;
+
+        // Use a loop to draw the symbols in a 3x3 grid
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                Symbol symbol = symbols[i][j];
+                // Use shuffledSymbols to get the current symbol
+                Symbol symbol = shuffledSymbols[i][j];
                 ImageIcon icon = symbol.getSymbolImage();
                 if (icon != null) {
-                    icon = new ImageIcon(icon.getImage().getScaledInstance(symbolSize, symbolSize, Image.SCALE_DEFAULT));
+                    // Scale the image to the desired symbol size
+                    Image scaledImage = icon.getImage().getScaledInstance(symbolSize, symbolSize, Image.SCALE_SMOOTH);
+                    icon = new ImageIcon(scaledImage);
+                    // Draw the image at the calculated position
                     icon.paintIcon(this, g, x, y);
                 }
-
-                x += symbolSize + 120;
+                // Move to the next column
+                x += symbolSize + xGap;
             }
-
-            x = 30;
-            y += symbolSize + 20;
+            // Reset the x position and move to the next row
+            x = xGap;
+            y += symbolSize + yGap;
         }
     }
+
 }

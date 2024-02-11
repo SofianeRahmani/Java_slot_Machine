@@ -7,12 +7,11 @@ public class OrangeSymbol implements Symbol{
         return "Orange";
     }
 
-    private static final int WIDTH = 60;
-    private static final int HEIGHT = 60;
-
+    private static final int WIDTH = 55;
+    private static final int HEIGHT = 55;
     @Override
     public ImageIcon getSymbolImage() {
-        ImageIcon originalIcon = new ImageIcon("src/img/orange.png");
+        ImageIcon originalIcon = new ImageIcon("src/src/img/orange.png");
         return resizeIcon(originalIcon, WIDTH, HEIGHT);
     }
 

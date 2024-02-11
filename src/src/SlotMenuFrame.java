@@ -11,12 +11,11 @@ public class SlotMenuFrame extends JFrame {
     Font titleFont1;
 
     {
-        String fName = "ProtestRevolution-Regular.ttf";
-        try (InputStream is = SlotGameFrame.class.getResourceAsStream(fName)) {
+        try (InputStream is = SlotMenuFrame.class.getResourceAsStream("/fonts/ProtestRevolution-Regular.ttf")) {
             if (is == null) {
-                throw new IOException("Font file not found: " + fName);
+                throw new IOException("Font file not found: /fonts/ProtestRevolution-Regular.ttf");
             }
-            titleFont1 = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(138f);
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(12f);
         } catch (FontFormatException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -25,12 +24,11 @@ public class SlotMenuFrame extends JFrame {
     Font titleFont2;
 
     {
-        String fName = "ProtestRevolution-Regular.ttf";
-        try (InputStream is = SlotGameFrame.class.getResourceAsStream(fName)) {
+        try (InputStream is = SlotMenuFrame.class.getResourceAsStream("/fonts/ProtestRevolution-Regular.ttf")) {
             if (is == null) {
-                throw new IOException("Font file not found: " + fName);
+                throw new IOException("Font file not found: /fonts/ProtestRevolution-Regular.ttf");
             }
-            titleFont2 = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(140f);
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(12f);
         } catch (FontFormatException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -44,12 +42,11 @@ public class SlotMenuFrame extends JFrame {
     Font buttonFont;
 
     {
-        String fName = "ProtestRevolution-Regular.ttf";
-        try (InputStream is = SlotGameFrame.class.getResourceAsStream(fName)) {
+        try (InputStream is = SlotMenuFrame.class.getResourceAsStream("/fonts/ProtestRevolution-Regular.ttf")) {
             if (is == null) {
-                throw new IOException("Font file not found: " + fName);
+                throw new IOException("Font file not found: /fonts/ProtestRevolution-Regular.ttf");
             }
-            buttonFont = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(55f);
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(12f);
         } catch (FontFormatException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -78,14 +75,14 @@ public class SlotMenuFrame extends JFrame {
 
         titlePanel = new JPanel();
         titlePanel.setBounds(150, 20, 1200, 200);
-        titlePanel.setBackground(new Color(155, 28, 85));
+        titlePanel.setBackground(new Color(9, 22, 51));
 
-        titleNameLabel = new JLabel("CYBER SLOT");
-        titleNameLabel.setForeground(new Color(234, 0, 82, 255));
+        titleNameLabel = new JLabel("SAMURAI SLOT");
+        titleNameLabel.setForeground(new Color(234, 0, 55, 255));
         titleNameLabel.setFont(titleFont1);
 
-        titleNameLabel2 = new JLabel("CYBER SLOT");
-        titleNameLabel2.setForeground(new Color(9, 24, 51));
+        titleNameLabel2 = new JLabel("SAMURAI SLOT");
+        titleNameLabel2.setForeground(new Color(234, 0, 55));
         titleNameLabel2.setFont(titleFont2);
 
         titleNameLabel.setBounds(0, 0, 1100, 100);
@@ -94,7 +91,7 @@ public class SlotMenuFrame extends JFrame {
 
         buttonPanel = new JPanel();
         buttonPanel.setBounds(400, 220, 350, 400);
-        buttonPanel.setBackground(new Color(155, 28, 72));
+        buttonPanel.setBackground(new Color(155, 28, 66));
 
         startNewGameButton = new JButton("START");
         startNewGameButton.setFocusable(false);
@@ -102,7 +99,7 @@ public class SlotMenuFrame extends JFrame {
         startNewGameButton.setOpaque(false);
         startNewGameButton.setContentAreaFilled(false);
         startNewGameButton.setBackground(new Color(155, 28, 72));
-        startNewGameButton.setForeground(new Color(222, 189, 203));
+        startNewGameButton.setForeground(new Color(190, 189, 222));
         startNewGameButton.setFont(buttonFont);
 
         startNewGameButton.addActionListener(e -> {

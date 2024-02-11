@@ -7,8 +7,8 @@ public class BellSymbol implements Symbol{
         return "Bell";
     }
 
-    private static final int WIDTH = 60;
-    private static final int HEIGHT = 60;
+    private static final int WIDTH = 55;
+    private static final int HEIGHT = 55;
 
     @Override
     public ImageIcon getSymbolImage() {
